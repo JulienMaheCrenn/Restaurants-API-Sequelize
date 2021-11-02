@@ -42,6 +42,40 @@ app.post('/api/restaurants', async (req,res) => {
         }catch(e) {
             res.status(400).send(e.message);
         };
+    })
+
+    .delete("/api/restaurants/:id", async (req,res) => {
+        try {
+            await Restaurant.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+            const restaurants = await Restaurant.findAll({});
+
+            res.status(200).send("Restaurant successfully deleted.");
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .put("/api/restaurants/:id", async (req,res) => {
+        try {
+            await Restaurant.update(req.body,{
+                where: {
+                    id: req.params.id
+                }
+            });
+            const restaurant = await Restaurant.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(restaurant);
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
     });
 //
 
