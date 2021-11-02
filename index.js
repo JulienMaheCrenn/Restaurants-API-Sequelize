@@ -22,10 +22,24 @@ app.post('/api/restaurants', async (req,res) => {
 
     .get("/api/restaurants", async (req,res) => {
         try {
-            const restaurant = await Restaurant.findAll({});
+            const restaurants = await Restaurant.findAll({});
 
             res.status(200).send(restaurants);
         }catch (e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .get("/api/restaurants/:id", async (req, res) => {
+        try {
+            const restaurant = await Restaurant.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(restaurant);
+        }catch(e) {
             res.status(400).send(e.message);
         };
     });
