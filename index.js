@@ -80,9 +80,13 @@ app.post('/api/restaurants', async (req,res) => {
 //
 
 app
-    .post('/api/menus', async (req,res) => {
+    .post('/api/restaurants/:id/menus', async (req,res) => {
         try {
+            const restaurant = await Restaurant.findOne({where: {id: req.params.id}});
             const menu = await Menu.create(req.body);
+
+            await restaurant.addMenu(menu);
+            await menu.reload()
 
             res.status(201).send(menu);
         }catch (e) {
@@ -148,9 +152,13 @@ app
 });
 
 app
-    .post('/api/menuitems', async (req,res) => {
+    .post('/api/menus/:id/menuitems', async (req,res) => {
         try {
+            const menu = await Menu.findOne({where:{id: req.params.id}});
             const menuItem = await MenuItem.create(req.body);
+
+            await menu.addMenuItem(menuItem);
+            await menuItem.reload();
 
             res.status(201).send(menuItem);
         }catch (e) {
