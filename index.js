@@ -79,6 +79,143 @@ app.post('/api/restaurants', async (req,res) => {
     });
 //
 
+app
+    .post('/api/menus', async (req,res) => {
+        try {
+            const menu = await Menu.create(req.body);
+
+            res.status(201).send(menu);
+        }catch (e) {
+            res.status(400).send(e.message);
+        }
+    })
+
+    .get("/api/menus", async (req,res) => {
+        try {
+            const menus = await Menu.findAll({});
+
+            res.status(200).send(menus);
+        }catch (e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .get("/api/menus/:id", async (req, res) => {
+        try {
+            const menu = await Menu.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(menu);
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .delete("/api/menus/:id", async (req,res) => {
+        try {
+            await Menu.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send("Menu successfully deleted.");
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .put("/api/menus/:id", async (req,res) => {
+        try {
+            await Menu.update(req.body,{
+                where: {
+                    id: req.params.id
+                }
+            });
+            const menu = await Menu.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(menu);
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+});
+
+app
+    .post('/api/menuitems', async (req,res) => {
+        try {
+            const menuItem = await MenuItem.create(req.body);
+
+            res.status(201).send(menuItem);
+        }catch (e) {
+            res.status(400).send(e.message);
+        }
+    })
+
+    .get("/api/menuitems", async (req,res) => {
+        try {
+            const menuItems = await MenuItem.findAll({});
+
+            res.status(200).send(menuItems);
+        }catch (e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .get("/api/menuitems/:id", async (req, res) => {
+        try {
+            const menuItem = await MenuItem.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(menuItem);
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .delete("/api/menuitems/:id", async (req,res) => {
+        try {
+            await MenuItem.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send("Menu item successfully deleted.");
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+    })
+
+    .put("/api/menuitems/:id", async (req,res) => {
+        try {
+            await MenuItem.update(req.body,{
+                where: {
+                    id: req.params.id
+                }
+            });
+            const menuItem = await MenuItem.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.status(200).send(menuItem);
+        }catch(e) {
+            res.status(400).send(e.message);
+        };
+});
+
+
 
 async function start() {
     await connection.sync({
