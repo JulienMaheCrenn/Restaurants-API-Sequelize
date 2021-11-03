@@ -8,9 +8,6 @@ const restaurantModel = {
         notEmpty: {
             msg: "Please enter a valid Restaurant name"
         },
-        isAlpha: {
-            msg: "Please only input letters"
-        }
       }
     },
     imagelink: {
@@ -20,9 +17,6 @@ const restaurantModel = {
         notEmpty: {
             msg: "Please enter a valid Restaurant name"
         },
-        isAlpha: {
-            msg: "Please only input letters"
-        }
       }
     },
   };
