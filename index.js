@@ -67,8 +67,6 @@ app.post('/api/restaurants', async (req,res) => {
                     id: req.params.id
                 }
             });
-
-
             res.status(200).send();
         }catch(e) {
             res.status(400).send(e.message);
