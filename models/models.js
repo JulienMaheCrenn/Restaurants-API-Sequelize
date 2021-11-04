@@ -15,7 +15,7 @@ const restaurantModel = {
       allowNull: false,
       validate: {
         notEmpty: {
-            msg: "Please enter a valid Restaurant name"
+            msg: "Please enter a valid image link"
         },
       }
     },

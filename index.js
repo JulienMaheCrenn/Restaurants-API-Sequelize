@@ -7,7 +7,9 @@ const {
 const express = require("express");
 const app = express();
 const port = 3001;
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 
 app.post('/api/restaurants', async (req,res) => {
@@ -51,9 +53,8 @@ app.post('/api/restaurants', async (req,res) => {
                     id: req.params.id
                 }
             });
-            const restaurants = await Restaurant.findAll({});
 
-            res.status(200).send("Restaurant successfully deleted.");
+            res.status(200).send();
         }catch(e) {
             res.status(400).send(e.message);
         };
@@ -66,13 +67,9 @@ app.post('/api/restaurants', async (req,res) => {
                     id: req.params.id
                 }
             });
-            const restaurant = await Restaurant.findOne({
-                where: {
-                    id: req.params.id
-                }
-            });
 
-            res.status(200).send(restaurant);
+
+            res.status(200).send();
         }catch(e) {
             res.status(400).send(e.message);
         };

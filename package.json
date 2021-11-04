@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JulienMaheCrenn/Restaurants-API-Sequelize#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "sequelize": "^6.9.0",
     "sqlite3": "^5.0.2"
