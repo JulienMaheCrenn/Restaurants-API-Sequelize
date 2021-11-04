@@ -11,10 +11,10 @@ const port = 3001;
 app.use(express.json());
 
 app.post('/api/restaurants', async (req,res) => {
+    
         try {
-        const restaurant = await Restaurant.create(req.body);
-
-        res.status(201).send(restaurant);
+        await Restaurant.create(req.body);
+        res.status(201).send();
         }catch (e) {
         res.status(400).send(e.message);
         }
