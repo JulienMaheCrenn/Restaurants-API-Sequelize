@@ -41,9 +41,6 @@ const menuItemModel = {
       notEmpty: {
           msg: "Please enter a valid Restaurant name"
       },
-      isAlpha: {
-          msg: "Please only input letters"
-      }
     }
   },
   price: {

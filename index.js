@@ -176,6 +176,20 @@ app
         }
     })
 
+    .get("/api/menus/:id/menuitems", async (req,res) => {
+        try {
+            const menuitems = await MenuItem.findAll({
+                where: {
+                    MenuId: req.params.id
+                }
+            });
+            res.status(200).send(menuitems);
+
+        } catch (error) {
+            res.status(400).send(e.message);
+        }
+    })
+
     .get("/api/menuitems", async (req,res) => {
         try {
             const menuItems = await MenuItem.findAll({});
