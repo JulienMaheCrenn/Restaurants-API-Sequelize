@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const cors = require('cors');
+// const { regexp } = require("sequelize/types/lib/operators");
 
 app.use(cors());
 app.use(express.json());
@@ -111,6 +112,20 @@ app
         }catch(e) {
             res.status(400).send(e.message);
         };
+    })
+
+    .get("/api/restaurants/:id/menus", async (req,res) => {
+        try {
+            const menus = await Menu.findAll({
+                where: {
+                    RestaurantId: req.params.id
+                }
+            });
+            res.status(200).send(menus);
+
+        } catch (error) {
+            res.status(400).send(e.message);
+        }
     })
 
     .delete("/api/menus/:id", async (req,res) => {
